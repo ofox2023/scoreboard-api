@@ -1,0 +1,18 @@
+{
+    "name": "Scoreboard",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "Harsh Patel",
+    "license": "MIT",
+    "private": true,
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.18.2",
+        "express-fileupload": "^1.4.0",
+        "harsh-uid": "^1.4.0",
+        "mysql2": "^3.6.0"
+    },
+    "scripts": {
+        "start": "npx nodemon start"
+    }
+}
