@@ -7,7 +7,7 @@ const addResult = async (req, resp) => {
         const res = await addData(req.body, "score");
         console.log("🚀 ~ file: addResult.js:8 ~ addResult ~ res:", res);
 
-        await axios.post("http://192.168.0.102:8000/new-result", {
+        await axios.post("http://16.171.140.78/new-result", {
             ...req.body,
             _id: res.data._id,
         });
