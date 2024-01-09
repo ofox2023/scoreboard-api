@@ -24,6 +24,11 @@ const addPlayer = require("./routes/post/addPlayer");
 const addMatch = require("./routes/post/addMatch");
 const addResult = require("./routes/post/addResult");
 const getLiveScore = require("./routes/get/getLiveScore");
+const getRunRate = require("./routes/get/getRunRate");
+const getMatchPlayers = require("./routes/get/getMatchPlayers");
+const getPoints = require("./routes/get/getPoints");
+const getPlayerPoints = require("./routes/get/getPlayerPoints");
+const playersStats = require("./routes/get/playersStats");
 
 const app = express();
 
@@ -32,7 +37,7 @@ app.use(express.json());
 app.use(fu());
 app.use("/files", express.static("./files"));
 
-app.listen(process.env.PORT || 80);
+app.listen(process.env.PORT || 8000);
 
 // get routes
 app.get("/", (req, resp) => {
@@ -51,6 +56,11 @@ app.get("/matches", getMatches);
 app.get("/match/:id", getMatch);
 app.get("/live-result", getLiveResult);
 app.get("/live-score/:id", getLiveScore);
+app.get("/run-rate", getRunRate);
+app.get("/match-players/:match", getMatchPlayers);
+app.get("/points/:tournament", getPoints);
+app.get("/player-points", getPlayerPoints);
+app.get("/player-stats/:match", playersStats);
 
 // post routes
 app.post("/category/add", addCategory);

@@ -5,6 +5,10 @@ const db = mysql.createConnection({
     database: "scoreboard",
     password: "Scoreboard#2023",
     user: "scoreboard",
+    // host: "localhost",
+    // database: "scoreboard",
+    // password: "",
+    // user: "root",
 });
 
 module.exports = db;

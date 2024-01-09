@@ -6,10 +6,12 @@
     "license": "MIT",
     "private": true,
     "dependencies": {
+        "axios": "^1.6.3",
         "cors": "^2.8.5",
         "express": "^4.18.2",
         "express-fileupload": "^1.4.0",
         "harsh-uid": "^1.4.0",
+        "lodash.orderby": "^4.6.0",
         "mysql2": "^3.6.0"
     },
     "scripts": {

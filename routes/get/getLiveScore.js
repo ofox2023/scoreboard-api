@@ -19,12 +19,12 @@ const getLiveScore = async (req, resp) => {
         teamAScore = score.filter((d) => d.team === match.teamA);
 
         teamAScore.forEach((i) => {
-            if (i.run) teamARuns += i.run;
-            teamAWickets += i.wicket;
+            if (i.run && i.result !== "Dott Ball") teamARuns += i.run;
+            if (i.result !== "Dott Ball") teamAWickets += i.wicket;
         });
 
-        console.log("TeamARuns: ", teamARuns);
-        console.log("TeamAWhickets: ", teamAWickets);
+        // console.log("TeamARuns: ", teamARuns);
+        // console.log("TeamAWhickets: ", teamAWickets);
 
         // ============================= Team A End ===============================
 
@@ -38,11 +38,11 @@ const getLiveScore = async (req, resp) => {
 
         teamBScore.forEach((i) => {
             if (i.run) teamBRuns += i.run;
-            teamBWickets += i.wicket;
+            if (i.result !== "Dott Ball") teamBWickets += i.wicket;
         });
 
-        console.log("TeamBRuns: ", teamBRuns);
-        console.log("TeamBWhickets: ", teamBWickets);
+        // console.log("TeamBRuns: ", teamBRuns);
+        // console.log("TeamBWhickets: ", teamBWickets);
 
         // ============================= Team B End ===============================
 
@@ -50,7 +50,15 @@ const getLiveScore = async (req, resp) => {
 
         let bowlerOver = 0;
 
+        let bowlerRun = 0;
+
         const bowlerOverData = score.filter((i) => i.bowler === match.bowler);
+
+        let bowlerWickets = score.filter(
+            (i) => i.bowler === match.bowler && i.wicket > 0
+        );
+
+        bowlerWickets = bowlerWickets.length;
 
         const mergedArray = [];
 
@@ -69,9 +77,16 @@ const getLiveScore = async (req, resp) => {
             }
         };
 
+        score
+            .filter((i) => i.bowler === match.bowler)
+            .forEach((i) => {
+                if (i.run && i.result.split(" ")[0] !== "WD")
+                    bowlerRun += i.run;
+            });
+
         bowlerOver = ballsToOvers(mergedArray.length);
 
-        console.log("BowlerOver: ", bowlerOver);
+        // console.log("BowlerOver: ", bowlerOver);
 
         // ============================= Bowler End ===============================
 
@@ -100,8 +115,8 @@ const getLiveScore = async (req, resp) => {
 
         playerABall = playerAMergedArr.length;
 
-        console.log("PlayerARun: ", playerARun);
-        console.log("PlayerABall: ", playerABall);
+        // console.log("PlayerARun: ", playerARun);
+        // console.log("PlayerABall: ", playerABall);
 
         let playerBRun = 0,
             playerBBall = 0;
@@ -122,8 +137,8 @@ const getLiveScore = async (req, resp) => {
 
         playerBBall = playerBMergedArr.length;
 
-        console.log("PlayerBRun: ", playerBRun);
-        console.log("PlayerBBall: ", playerBBall);
+        // console.log("PlayerBRun: ", playerBRun);
+        // console.log("PlayerBBall: ", playerBBall);
 
         // ============================= Betsman End ==============================
 
@@ -139,26 +154,33 @@ const getLiveScore = async (req, resp) => {
             data: [bowler],
         } = await getData(null, "players", `_id = ${match.bowler}`);
 
-        const players = {
-            playerA: {
+        const players = {};
+
+        if (playerA) {
+            players.playerA = {
                 run: playerARun,
                 ball: playerABall,
                 fullName: playerA.fullName,
                 shortName: playerA.shortName,
-            },
-            playerB: {
+            };
+        }
+
+        if (playerB) {
+            players.playerB = {
                 run: playerBRun,
                 ball: playerBBall,
                 fullName: playerB.fullName,
                 shortName: playerB.shortName,
-            },
-        };
+            };
+        }
 
         if (bowler) {
             players.bowler = {
                 over: bowlerOver,
                 fullName: bowler.fullName,
                 shortName: bowler.shortName,
+                wicket: bowlerWickets,
+                run: bowlerRun,
             };
         }
 
