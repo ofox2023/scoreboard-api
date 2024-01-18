@@ -50,12 +50,7 @@ const getPlayerPoints = async (req, resp) => {
         };
 
         score.forEach((i) => {
-            if (
-                i.result !== "Dott Ball" &&
-                i.batsman != player &&
-                i.result != "Run Out" &&
-                i.result != "Retired Out"
-            )
+            if (i.result !== "Dott Ball" && i.bowler == player)
                 wicket += i.wicket;
 
             if (i.batsman == player) {
@@ -66,8 +61,7 @@ const getPlayerPoints = async (req, resp) => {
 
             if (i.result === "Bowled" && i.batsman != player) bowled += 1;
 
-            if (i.result === "LBW") lbw += 1;
-            if (i.result === "LBW") lbw += 1;
+            if (i.result === "LBW" && i.batsman != player) lbw += 1;
 
             if (i.extraInfo) {
                 const js = JSON.parse(i.extraInfo);

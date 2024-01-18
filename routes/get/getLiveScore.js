@@ -102,8 +102,17 @@ const getLiveScore = async (req, resp) => {
                     i.result.split("")[0] !== "WD"
             )
             .forEach((i) => {
-                if (i.run && i.result.split(" ")[0] !== "WD")
-                    playerARun += i.run;
+                const [sp0, sp1] = i.result.split(" ");
+                if (
+                    i.run &&
+                    sp0 !== "WD" &&
+                    i.result !== "NB" &&
+                    sp0 !== "BY" &&
+                    sp0 !== "LB"
+                ) {
+                    const [sp0, sp1] = i.result.split(" ");
+                    playerARun += sp0 === "NB" ? i.run - 1 : i.run;
+                }
             });
 
         const playerAMergedArr = [];
@@ -124,8 +133,16 @@ const getLiveScore = async (req, resp) => {
         score
             .filter((i) => i.batsman === match.playerB)
             .forEach((i) => {
-                if (i.run && i.result.split(" ")[0] !== "WD")
-                    playerBRun += i.run;
+                if (
+                    i.run &&
+                    sp0 !== "WD" &&
+                    i.result !== "NB" &&
+                    sp0 !== "BY" &&
+                    sp0 !== "LB"
+                ) {
+                    const [sp0, sp1] = i.result.split(" ");
+                    playerBRun += sp0 === "NB" ? i.run - 1 : i.run;
+                }
             });
 
         const playerBMergedArr = [];
