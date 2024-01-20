@@ -4,7 +4,7 @@ const getBowlerResult = async (req, resp) => {
     try {
         const { match, over } = req.query;
 
-        const query = `SELECT * FROM score WHERE _match = ${match} && _over <= ${over} && _over >= ${Math.floor(
+        const query = `SELECT * FROM score WHERE _match = ${match} && _over <= ${over} && _over > ${Math.floor(
             parseFloat(over)
         )}`;
 
