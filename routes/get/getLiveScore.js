@@ -134,7 +134,6 @@ const getLiveScore = async (req, resp) => {
             .filter((i) => i.batsman === match.playerB)
             .forEach((i) => {
                 const [sp0, sp1] = i.result.split(" ");
-
                 if (
                     i.run &&
                     sp0 !== "WD" &&

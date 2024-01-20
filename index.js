@@ -29,6 +29,7 @@ const getMatchPlayers = require("./routes/get/getMatchPlayers");
 const getPoints = require("./routes/get/getPoints");
 const getPlayerPoints = require("./routes/get/getPlayerPoints");
 const playersStats = require("./routes/get/playersStats");
+const getBowlerResult = require("./routes/get/getBowlerResult");
 
 const app = express();
 
@@ -61,6 +62,7 @@ app.get("/match-players/:match", getMatchPlayers);
 app.get("/points/:tournament", getPoints);
 app.get("/player-points", getPlayerPoints);
 app.get("/player-stats/:match", playersStats);
+app.get("/bowler-result", getBowlerResult);
 
 // post routes
 app.post("/category/add", addCategory);

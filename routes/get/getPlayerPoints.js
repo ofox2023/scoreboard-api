@@ -54,9 +54,19 @@ const getPlayerPoints = async (req, resp) => {
                 wicket += i.wicket;
 
             if (i.batsman == player) {
-                runs += i.run;
-                if (i.result === "Six") six += 1;
-                if (i.result === "Four") four += 1;
+                const [sp0, sp1] = i.result.split(" ");
+
+                if (
+                    i.run &&
+                    sp0 !== "WD" &&
+                    i.result !== "NB" &&
+                    sp0 !== "BY" &&
+                    sp0 !== "LB"
+                ) {
+                    runs += sp0 === "NB" ? i.run - 1 : i.run;
+                    if (i.result === "Six") six += 1;
+                    if (i.result === "Four") four += 1;
+                }
             }
 
             if (i.result === "Bowled" && i.batsman != player) bowled += 1;
