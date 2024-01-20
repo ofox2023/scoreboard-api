@@ -38,7 +38,7 @@ app.use(express.json());
 app.use(fu());
 app.use("/files", express.static("./files"));
 
-app.listen(process.env.PORT || 8000);
+app.listen(process.env.PORT || 80);
 
 // get routes
 app.get("/", (req, resp) => {
