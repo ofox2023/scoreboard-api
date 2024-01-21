@@ -136,13 +136,15 @@ const getLiveScore = async (req, resp) => {
                 const [sp0, sp1] = i.result.split(" ");
                 if (
                     i.run &&
-                    sp0 !== "WD" &&
+                    i.result !== "WD" &&
                     i.result !== "NB" &&
+                    i.result !== "WD + Four" &&
                     sp0 !== "BY" &&
                     sp0 !== "LB"
                 ) {
                     const [sp0, sp1] = i.result.split(" ");
-                    playerBRun += sp0 === "NB" ? i.run - 1 : i.run;
+                    playerBRun +=
+                        sp0 === "NB" || sp0 === "WD" ? i.run - 1 : i.run;
                 }
             });
 
