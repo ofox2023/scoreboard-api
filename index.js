@@ -30,6 +30,7 @@ const getPoints = require("./routes/get/getPoints");
 const getPlayerPoints = require("./routes/get/getPlayerPoints");
 const playersStats = require("./routes/get/playersStats");
 const getBowlerResult = require("./routes/get/getBowlerResult");
+const isMatchLive = require("./routes/get/isMatchLive");
 
 const app = express();
 
@@ -63,6 +64,7 @@ app.get("/points/:tournament", getPoints);
 app.get("/player-points", getPlayerPoints);
 app.get("/player-stats/:match", playersStats);
 app.get("/bowler-result", getBowlerResult);
+app.get("/is-match-live/:match", isMatchLive);
 
 // post routes
 app.post("/category/add", addCategory);
