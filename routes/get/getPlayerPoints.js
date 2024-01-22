@@ -7,7 +7,7 @@ const getPlayerPoints = async (req, resp) => {
         if (!tournament) {
             const {
                 data: [{ tournamet: t }],
-            } = await getData("tournamet", "matches", `_id = ${match}`);
+            } = await getData("tournament", "matches", `_id = ${match}`);
             tournament = t;
         }
 
