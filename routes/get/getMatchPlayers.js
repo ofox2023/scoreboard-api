@@ -16,8 +16,14 @@ const getMatchPlayers = async (req, resp) => {
             data: [teamB],
         } = await getData(null, "teams", `_id = ${matchData.teamB}`);
 
-        teamA.players = JSON.parse(teamA.players);
-        teamB.players = JSON.parse(teamB.players);
+        teamA.players = [
+            ...JSON.parse(teamA.anouncedPlayers),
+            ...JSON.parse(teamA.subsitutePlayers),
+        ];
+        teamB.players = [
+            ...JSON.parse(teamB.anouncedPlayers),
+            ...JSON.parse(teamB.subsitutePlayers),
+        ];
 
         const teamAPlayers = [];
 

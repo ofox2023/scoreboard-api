@@ -106,7 +106,7 @@ const getLiveScore = async (req, resp) => {
                 if (
                     i.run &&
                     sp0 !== "WD" &&
-                    i.result !== "NB" &&
+                    sp0 !== "NB" &&
                     sp0 !== "BY" &&
                     sp0 !== "LB"
                 ) {
