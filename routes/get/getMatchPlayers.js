@@ -34,8 +34,8 @@ const getMatchPlayers = async (req, resp) => {
                 !teamB.subsitutePlayers.includes(i)
         );
 
-        teamA.players = [teamA.anouncedPlayers, teamA.subsitutePlayers];
-        teamB.players = [teamB.anouncedPlayers, teamB.subsitutePlayers];
+        teamA.players = [...teamA.anouncedPlayers, ...teamA.subsitutePlayers];
+        teamB.players = [...teamB.anouncedPlayers, ...teamB.subsitutePlayers];
 
         const teamAPlayers = [];
 
