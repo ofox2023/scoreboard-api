@@ -4,12 +4,10 @@ const getPlayerPoints = async (req, resp) => {
     try {
         let { match, tournament, player } = req.query;
 
-        if (!tournament) {
-            const {
-                data: [{ tournamet: t }],
-            } = await getData("tournament", "matches", `_id = ${match}`);
-            tournament = t;
-        }
+        const {
+            data: [{ tournamet: t }],
+        } = await getData("tournament", "matches", `_id = ${match}`);
+        tournament = t;
 
         const {
             data: [points],
