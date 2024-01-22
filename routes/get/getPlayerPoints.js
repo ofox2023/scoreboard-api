@@ -2,7 +2,14 @@ const getData = require("../../functions/getData");
 
 const getPlayerPoints = async (req, resp) => {
     try {
-        const { match, tournament, player } = req.query;
+        let { match, tournament, player } = req.query;
+
+        if (!tournament) {
+            const {
+                data: [{ tournamet: t }],
+            } = await getData("tournamet", "matches", `_id = ${match}`);
+            tournament = t;
+        }
 
         const {
             data: [points],
