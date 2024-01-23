@@ -1,4 +1,3 @@
-const express = require("express");
 const cors = require("cors");
 const fu = require("express-fileupload");
 
@@ -31,15 +30,15 @@ const getPlayerPoints = require("./routes/get/getPlayerPoints");
 const playersStats = require("./routes/get/playersStats");
 const getBowlerResult = require("./routes/get/getBowlerResult");
 const isMatchLive = require("./routes/get/isMatchLive");
-
-const app = express();
+const { app, express, server } = require("./functions/server");
+const lignup = require("./routes/get/lignup");
 
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(fu());
 app.use("/files", express.static("./files"));
 
-app.listen(80);
+server.listen(80);
 
 // get routes
 app.get("/", (req, resp) => {
@@ -65,6 +64,7 @@ app.get("/player-points", getPlayerPoints);
 app.get("/player-stats/:match", playersStats);
 app.get("/bowler-result", getBowlerResult);
 app.get("/is-match-live/:match", isMatchLive);
+app.get("/lignup/:match", lignup);
 
 // post routes
 app.post("/category/add", addCategory);

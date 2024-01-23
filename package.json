@@ -12,7 +12,8 @@
         "express-fileupload": "^1.4.0",
         "harsh-uid": "^1.4.0",
         "lodash.orderby": "^4.6.0",
-        "mysql2": "^3.6.0"
+        "mysql2": "^3.6.0",
+        "socket.io": "^4.7.4"
     },
     "scripts": {
         "start": "npx nodemon start",
