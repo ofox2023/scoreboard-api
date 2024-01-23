@@ -50,6 +50,8 @@ const getMatchPlayers = async (req, resp) => {
         } else {
             teamA.anouncedPlayers = JSON.parse(teamA.players);
             teamB.anouncedPlayers = JSON.parse(teamB.players);
+            teamA.players = JSON.parse(teamA.players);
+            teamB.players = JSON.parse(teamB.players);
         }
 
         const teamAPlayers = [];
