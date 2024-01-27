@@ -32,6 +32,7 @@ const getBowlerResult = require("./routes/get/getBowlerResult");
 const isMatchLive = require("./routes/get/isMatchLive");
 const { app, express, server } = require("./functions/server");
 const lignup = require("./routes/get/lignup");
+const completeMatch = require("./routes/get/completeMatch");
 
 app.use(cors({ origin: "*" }));
 app.use(express.json());
@@ -65,6 +66,7 @@ app.get("/player-stats/:match", playersStats);
 app.get("/bowler-result", getBowlerResult);
 app.get("/is-match-live/:match", isMatchLive);
 app.get("/lignup/:match", lignup);
+app.get("/complete-match/:match", completeMatch);
 
 // post routes
 app.post("/category/add", addCategory);
