@@ -1,4 +1,5 @@
 const addData = require("../../functions/addData");
+const getData = require("../../functions/getData");
 const { io } = require("../../functions/server");
 
 const completeMatch = async (req, resp) => {
