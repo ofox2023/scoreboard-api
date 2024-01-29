@@ -16,7 +16,7 @@ const getPlayerPoints = async (req, resp) => {
         const { data: score } = await getData(
             null,
             "score",
-            `_match = ${match} && (batsman = ${player} || bowler = ${player} || JSON_UNQUOTE(JSON_SEARCH(extraInfo, 'one', ${player})) IS NOT NULL)`
+            `_match = ${match} && (batsman = ${player} || bowler = ${player} || extraInfo LIKE '%${player}%')`
         );
 
         let runs = 0,
@@ -80,7 +80,7 @@ const getPlayerPoints = async (req, resp) => {
 
             if (i.extraInfo) {
                 const js = JSON.parse(i.extraInfo);
-                console.log("🚀 ~ score.forEach ~ js:", js);
+
                 if (js.whoCaught == player) caught += 1;
 
                 if (js.whoPass == null && js.whoThrow == player)
