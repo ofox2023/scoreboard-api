@@ -1,4 +1,5 @@
 const addData = require("../../functions/addData");
+const { io } = require("../../functions/server");
 
 const addMatch = async (req, resp) => {
     try {
@@ -20,6 +21,8 @@ const addMatch = async (req, resp) => {
         delete req.body.bowlerImage;
 
         const res = await addData(req.body, "matches");
+
+        io.emit("change", "player changed");
 
         return resp.send(res);
     } catch (err) {
