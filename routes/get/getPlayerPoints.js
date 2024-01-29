@@ -80,6 +80,7 @@ const getPlayerPoints = async (req, resp) => {
 
             if (i.extraInfo) {
                 const js = JSON.parse(i.extraInfo);
+                console.log("🚀 ~ score.forEach ~ js:", js);
                 if (js.whoCaught == player) caught += 1;
 
                 if (js.whoPass == null && js.whoThrow == player)
